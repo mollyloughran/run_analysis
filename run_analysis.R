@@ -19,10 +19,11 @@
         traindata <- cbind(subtraindata, ytraindata, xtraindata2)
                 #reads train data sets and concatenates sets
         mergeset <- rbind(testdata,traindata) #creates mergeset
-
+        write.table(mergeset, file = "mergeset.txt", sep=" ") #writes dataset
 #second dataset: 
         meltset <- melt(mergeset,id=c("sub","labels"),measure.vars=feat3)        
         subjectset <- dcast(meltset, sub ~ variable,mean)
         activityset <- dcast(meltset, labels ~ variable,mean)      
         activityset$labels <- acts$actname #assigns activity names to activity labels
         tidyset <- rbind(subjectset,activityset) #creates tidy set
+        write.table(mergeset, file = "tidyset.txt", sep=" ")
